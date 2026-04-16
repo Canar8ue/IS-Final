@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé | Jarin Canar</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom Design System -->
+    <link rel="stylesheet" href="css/design-system.css">
+    
+    <style>
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+        .experience-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 1px var(--border);
+        }
+        .skill-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: #f3f4f6;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        .skill-badge:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        @media print {
+            .navbar, .footer, .btn-print { display: none; }
+            .resume-container { padding: 0; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand fw-900 fs-4 text-secondary" href="index.html" style="letter-spacing: -1px; font-weight: 900;">
+                Jarin Canar
+            </a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto align-items-center gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="resume.html">Résumé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="game.html">Web Game</a></li>
+                    <li class="nav-item ms-lg-3"><a class="btn btn-premium btn-primary-premium px-4" href="FromScratch/index.html">From Scratch</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="resume-container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-900 mb-2">Jarin Canar</h1>
+            <p class="text-muted fs-5 mb-4">Aspiring Business Information Systems major at BYU</p>
+            <div class="d-flex justify-content-center gap-3">
+                <span class="text-muted"><i class="bi bi-envelope me-2"></i>jarincanar@gmail.com</span>
+                <span class="text-muted"><i class="bi bi-linkedin me-2"></i>linkedin.com/in/jarincanar</span>
+            </div>
+            <button class="btn btn-premium btn-primary-premium mt-4 btn-print" onclick="window.print()">
+                <i class="bi bi-printer me-2"></i>Download PDF
+            </button>
+        </div>
+
+        <section class="mb-5 mt-5">
+            <h2 class="section-title fs-3 mb-4"><i class="bi bi-briefcase me-3 color-primary"></i>Experience</h2>
+            
+            <div class="experience-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="fw-800 fs-5 mb-0">Knight Motor Company</h3>
+                    <span class="badge bg-light text-muted fw-500">Mar 2026 - Present</span>
+                </div>
+                <p class="text-primary fw-700 mb-2">Service Manager</p>
+                <p class="text-muted">I manage all operations in the mornings for Knight Motor Co. in Provo, ensuring seamless workflow and high customer satisfaction.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="fw-800 fs-5 mb-0">Knight Motor Company</h3>
+                    <span class="badge bg-light text-muted fw-500">Feb 2026 - Mar 2026</span>
+                </div>
+                <p class="text-primary fw-700 mb-2">Web Developer and Front Desk</p>
+                <p class="text-muted">Designed, developed, and set up the company website, while managing calls, orders, and customer relations.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="fw-800 fs-5 mb-0">Costa Vida, Fresh Mexican Grill</h3>
+                    <span class="badge bg-light text-muted fw-500">Aug 2025 - Feb 2026</span>
+                </div>
+                <p class="text-primary fw-700 mb-2">Cold Prep</p>
+                <p class="text-muted">Prepared fresh ingredients and maintained strict safety and cleanliness standards in a high-volume kitchen environment.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="fw-800 fs-5 mb-0">RIDD</h3>
+                    <span class="badge bg-light text-muted fw-500">May 2025 - July 2025</span>
+                </div>
+                <p class="text-primary fw-700 mb-2">Door to Door Sales Representative</p>
+                <p class="text-muted">Executed direct sales strategies for pest control services, consistently meeting targets and honing negotiation skills.</p>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title fs-3 mb-4"><i class="bi bi-book me-3 text-primary"></i>Education</h2>
+            
+            <div class="card-premium mb-4">
+                <h3 class="fw-800 fs-5 mb-1">Brigham Young University</h3>
+                <p class="text-primary fw-700 mb-2">BBA, Management Information Systems</p>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">August 2025 - April 2027</span>
+                    <span class="text-muted">Provo, UT</span>
+                </div>
+            </div>
+
+            <div class="card-premium mb-4">
+                <h3 class="fw-800 fs-5 mb-1">Utah Valley University</h3>
+                <p class="text-primary fw-700 mb-2">Associate of Science</p>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">August 2022 - May 2025</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title fs-3 mb-4"><i class="bi bi-star me-3 text-primary"></i>Skills & Awards</h2>
+            <div class="d-flex flex-wrap">
+                <span class="skill-badge">QuickBooks</span>
+                <span class="skill-badge">Marketing</span>
+                <span class="skill-badge">Team Management</span>
+                <span class="skill-badge">Full-stack Dev</span>
+                <span class="skill-badge">Python (Flask)</span>
+                <span class="skill-badge">Sales Strategy</span>
+                <span class="skill-badge">Operations Management</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-5 bg-white border-top">
+        <div class="container text-center">
+            <p class="small" style="color: #000000; font-weight: 500;">© 2026 Jarin Canar.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

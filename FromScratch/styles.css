@@ -1,0 +1,170 @@
+
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #111214;
+  --primary: #1677ff;
+}
+
+@font-face {
+  font-family: 'Benz';
+  src: url('BenzModels-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.back-pill {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    background: rgba(255,255,255,0.9);
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+    transition: 0.3s;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.back-pill:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.header {
+  text-align: center;
+  font-size: 400%; 
+  padding-top: 5%; 
+  font-family: 'Benz', sans-serif;
+}
+
+.header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header a img {
+    transition: 0.3s;
+}
+
+.header a:hover img {
+    transform: scale(1.2);
+}
+
+.text-center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.roundcard {
+  display: block;
+  border-radius: 30px;
+    height: auto;
+    width: 80%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.space {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.video-container {
+    max-width: 1120px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.video-container h2 {
+    font-family: 'Benz', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.video-container iframe {
+    border-radius: 20px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 1120px;
+    aspect-ratio: 16/9;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 100px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 10px;
+    background: var(--surface);
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .header { font-size: 200%; }
+    .roundcard { width: 95%; }
+    .back-pill { padding: 80px 15px; top: 15px; left: 15px; }
+}
+
+/* Tech Page Specifics */
+body.tech-page {
+    background: #111214;
+    color: #ffffff;
+}
+
+.tech-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 20px 100px;
+}
+
+.tech-section {
+    margin-bottom: 80px;
+}
+
+.tech-image {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.nested-list-container {
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.tableau-wrapper {
+    margin-top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}

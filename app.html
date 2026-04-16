@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Hunt | Web App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --primary: #1677ff;
+            --secondary: #111827;
+            --bg: #f9fafb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .game-header {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-weight: 700;
+        }
+
+        .stat-box {
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        #game-container {
+            position: relative;
+            width: 90vw;
+            height: 70vh;
+            max-width: 1000px;
+            background: #eef2f3;
+            background-image: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
+            border-radius: 2rem;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            overflow: hidden;
+            cursor: crosshair;
+            border: 8px solid white;
+        }
+
+        .bird {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: transform 0.1s;
+        }
+
+        .start-screen {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-start {
+            padding: 1.25rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 1rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 20px 40px rgba(22, 119, 255, 0.2);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(22, 119, 255, 0.3);
+        }
+
+        .score-popup {
+            position: absolute;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.5rem;
+            animation: floatUp 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+
+        .back-link {
+            position: absolute;
+            bottom: 40px;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover { color: var(--primary); }
+
+        /* Pixel Bird Placeholder */
+        .pixel-bird {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="40" width="60" height="40" fill="%231677ff"/><rect x="70" y="50" width="20" height="10" fill="orange"/><circle cx="65" cy="55" r="5" fill="white"/><circle cx="67" cy="55" r="2" fill="black"/></svg>');
+        }
+    </style>
+</head>
+<body>
+    <div class="game-header">
+        <a href="index.html" class="logo">ShopBird Hunter</a>
+        <div class="stats">
+            <div class="stat-box">Score: <span id="score">0</span></div>
+            <div class="stat-box">Shots: <span id="shots">0</span></div>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="start-screen" class="start-screen">
+            <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 10px;">BIRD HUNT</h1>
+            <p style="color: #6b7280; margin-bottom: 40px;">Click the birds to grow your shop's revenue.</p>
+            <button class="btn-start" onclick="startGame()">START GAME</button>
+        </div>
+    </div>
+
+    <a href="scratch.html" class="back-link">&larr; Back to Scratch Page</a>
+
+    <script>
+        let score = 0;
+        let shots = 0;
+        let gameActive = false;
+        const container = document.getElementById('game-container');
+        const scoreEl = document.getElementById('score');
+        const shotsEl = document.getElementById('shots');
+
+        function startGame() {
+            gameActive = true;
+            score = 0;
+            shots = 0;
+            updateStats();
+            document.getElementById('start-screen').style.display = 'none';
+            spawnBird();
+        }
+
+        function spawnBird() {
+            if (!gameActive) return;
+
+            const bird = document.createElement('div');
+            bird.className = 'bird pixel-bird';
+            
+            // Random start position
+            const startX = Math.random() < 0.5 ? -60 : container.offsetWidth + 60;
+            const startY = Math.random() * (container.offsetHeight - 100) + 50;
+            
+            bird.style.left = startX + 'px';
+            bird.style.top = startY + 'px';
+            
+            if (startX > 0) bird.style.transform = 'scaleX(-1)';
+
+            container.appendChild(bird);
+
+            // Movement math
+            const targetX = startX < 0 ? container.offsetWidth + 100 : -100;
+            const speed = Math.random() * 3 + 2;
+            let currentX = startX;
+
+            const interval = setInterval(() => {
+                if (startX < 0) {
+                    currentX += speed;
+                    if (currentX > container.offsetWidth + 100) removeBird();
+                } else {
+                    currentX -= speed;
+                    if (currentX < -100) removeBird();
+                }
+                bird.style.left = currentX + 'px';
+            }, 10);
+
+            bird.onclick = (e) => {
+                e.stopPropagation();
+                score += 10;
+                createPopup(e.clientX, e.clientY);
+                removeBird();
+            };
+
+            function removeBird() {
+                clearInterval(interval);
+                if (bird.parentNode) {
+                    container.removeChild(bird);
+                    // Spawn next bird
+                    setTimeout(spawnBird, Math.random() * 1000 + 500);
+                }
+            }
+        }
+
+        container.onclick = () => {
+            if (!gameActive) return;
+            shots++;
+            updateStats();
+        };
+
+        function updateStats() {
+            scoreEl.innerText = score;
+            shotsEl.innerText = shots;
+        }
+
+        function createPopup(x, y) {
+            const popup = document.createElement('div');
+            popup.className = 'score-popup';
+            popup.innerText = '+10';
+            popup.style.left = (x - container.getBoundingClientRect().left) + 'px';
+            popup.style.top = (y - container.getBoundingClientRect().top) + 'px';
+            container.appendChild(popup);
+            setTimeout(() => container.removeChild(popup), 500);
+        }
+    </script>
+</body>
+</html>

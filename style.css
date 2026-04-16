@@ -1,0 +1,368 @@
+/* style.css */
+:root {
+    /* Default (Dark Mode) Variables */
+    --bg-overlay: rgba(10, 10, 10, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --nav-bg: rgba(0, 0, 0, 0.6);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-main: #fff;
+    --text-muted: #888;
+    --input-bg: rgba(0,0,0,0.3);
+    --btn-bg: #fff;
+    --btn-text: #000;
+    --link-color: #8ab4f8; /* A soft, legible Sky Blue (Google's standard) */
+}
+
+/* LIGHT MODE OVERRIDES */
+body.light-mode {
+    --bg-overlay: rgba(245, 245, 245, 0.85); /* Light fog over mountains */
+    --glass-bg: rgba(255, 255, 255, 0.6);   /* Milky glass */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --text-main: #111;
+    --text-muted: #555;
+    --input-bg: rgba(255, 255, 255, 0.5);
+    --btn-bg: #111;
+    --btn-text: #fff;
+    --link-color: #1e3a8a; /* A clean, professional Navy Blue */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+    background-image: url('mountains.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #050505;
+    transition: color 0.3s ease;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+/* THEME TOGGLE BUTTON */
+#theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+a {
+    color: var(--link-color); /* The Navy/Sky Blue variable we just made */
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Header & Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    border-radius: 6px;
+}
+.socials{
+    height: 35px;
+    width: 35px;
+}
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+}
+
+nav { display: flex; gap: 10px; }
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+nav a:hover, nav a.active {
+    background: rgba(125, 125, 125, 0.15);
+    color: var(--text-main);
+}
+
+/* Layout & Cards */
+.wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+h3 { color: var(--text-main); }
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Service & Review Items */
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.service-item:last-child { border-bottom: none; }
+
+.price {
+    background: rgba(125,125,125,0.1);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.review-card {
+    background: var(--input-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.review-text {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.review-author {
+    font-weight: bold;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    text-align: right;
+    display: block;
+}
+
+/* Forms & Footer */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    box-sizing: border-box;
+}
+
+input::placeholder, textarea::placeholder { color: var(--text-muted); }
+
+button.submit-btn {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    transition: opacity 0.3s;
+}
+button.submit-btn:hover { opacity: 0.8; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    nav {
+        flex-wrap: wrap; /* Allows buttons to wrap to next line */
+        justify-content: center;
+    }
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================
+   CUSTOM GOOGLE TRANSLATE BUTTON
+   ========================================= */
+
+/* 1. The Container (Positions everything) */
+.lang-wrapper {
+    position: fixed;
+    bottom: 90px;   /* Sits above the theme toggle */
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    z-index: 9999;
+}
+
+/* 2. The Visual Button (What you see) */
+.lang-visual {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--btn-bg);       /* Matches Dark/Light mode theme */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* 3. The Image (lang.png) */
+.lang-visual img {
+    width: 24px;   /* Adjust icon size */
+    height: 24px;
+    object-fit: contain;
+    /* Optional: Invert color in dark mode if it's a black icon */
+    filter: contrast(0.5); 
+}
+
+/* Hover Effect */
+.lang-wrapper:hover .lang-visual {
+    transform: scale(1.1);
+}
+
+/* 4. The Google Widget (Invisible Overlay) */
+#google_translate_element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;           /* MAKE IT INVISIBLE */
+    overflow: hidden;
+    border-radius: 50%;
+    z-index: 2;           /* Sits on top of the visual button */
+}
+
+/* 5. Force the internal Google Dropdown to fill the button area */
+.goog-te-combo {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    cursor: pointer !important;
+    transform: scale(2);  /* Make it big to catch the click */
+    opacity: 0.01;        /* Keep it clickable */
+}
+
+/* Hide top banner */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
+
+/* Service Menu Title Button Style */
+/* Service Menu Link Button */
+.menu-btn {
+    display: block;           /* Makes it a big box, not just text */
+    width: 100%;              /* Full width */
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--border-color);
+    
+    padding: 15px 0;
+    margin-bottom: 25px;
+    
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;        /* Keeps it looking like a Heading */
+    letter-spacing: 2px;
+    text-decoration: none;    /* REMOVES THE UNDERLINE */
+    
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, opacity 0.2s;
+    box-sizing: border-box;   /* Ensures padding doesn't break width */
+}
+
+/* Hover Effect */
+.menu-btn:hover {
+    transform: scale(1.02);   /* Slight pop when you hover */
+    opacity: 0.9;
+}
